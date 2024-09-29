@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet } from 'react-native';
-import { Cell } from './cell';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { sum } from '../utils';
+import { Cell } from './cell';
 
 export class Row extends Component {
   static propTypes = {
@@ -43,8 +43,7 @@ export class Rows extends Component {
   };
 
   render() {
-    const { data,
-      style, widthArr, heightArr, flexArr, textStyle, belowText, belowTextStyle, ...props } = this.props;
+    const { data, style, widthArr, heightArr, flexArr, textStyle, belowText, belowTextStyle, rowStyles, ...props } = this.props;
     const flex = flexArr ? sum(flexArr) : 0;
     const width = widthArr ? sum(widthArr) : 0;
 
@@ -53,7 +52,7 @@ export class Rows extends Component {
         {data.map((item, i) => {
           const height = heightArr && heightArr[i];
           return (
-            <View key={i}>
+            <View key={i} style={item.id && rowStyles.get(item.id)}>
               <Row
                 data={item}
                 widthArr={widthArr}
@@ -63,9 +62,7 @@ export class Rows extends Component {
                 textStyle={textStyle}
                 {...props}
               />
-              {belowText?.[i] && <Text style={belowTextStyle}>
-                {belowText?.[i]}
-              </Text>}
+              { belowText?.[i] && <Text style={belowTextStyle}>{belowText?.[i]}</Text>}
             </View>
           )
         })}
