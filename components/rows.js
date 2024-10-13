@@ -52,7 +52,7 @@ export class Rows extends Component {
         {data.map((item, i) => {
           const height = heightArr && heightArr[i];
           return (
-            <View key={i} style={item.id && rowStyles.get(item.id)}>
+            <View key={i} style={rowStyles?.[i]}>
               <Row
                 data={item}
                 widthArr={widthArr}
