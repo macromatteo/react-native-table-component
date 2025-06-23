@@ -43,7 +43,7 @@ export class Rows extends Component {
   };
 
   render() {
-    const { data, style, widthArr, heightArr, flexArr, textStyle, belowText, belowTextStyle, rowStyles, ...props } = this.props;
+    const { data, style, widthArr, heightArr, flexArr, textStyle, belowText, belowTextStyle, rowStyles, childAbove, ...props } = this.props;
     const flex = flexArr ? sum(flexArr) : 0;
     const width = widthArr ? sum(widthArr) : 0;
 
@@ -53,6 +53,7 @@ export class Rows extends Component {
           const height = heightArr && heightArr[i];
           return (
             <View key={i} style={rowStyles?.[i]}>
+              {childAbove?.[i]}
               <Row
                 data={item}
                 widthArr={widthArr}
