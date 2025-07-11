@@ -14,7 +14,7 @@ export class Cell extends Component {
     const textDom = React.isValidElement(data) ? (
       data
     ) : (
-      <Text maxFontSizeMultiplier={1} style={[textStyle, styles.text]} {...props}>
+      <Text maxFontSizeMultiplier={1} style={{...textStyle, ...styles?.text??{}}} {...props}>
         {data}
       </Text>
     );
