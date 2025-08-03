@@ -1,6 +1,6 @@
 import { Feather } from "@expo/vector-icons";
 import PropTypes from 'prop-types';
-import React, { Component, Fragment } from 'react';
+import { Component, Fragment } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { sum } from '../utils';
 import { Cell } from './cell';
@@ -76,7 +76,7 @@ export class Rows extends Component {
                 textStyle={textStyle}
                 {...props}
               />
-              {belowText?.[i] && <Text style={belowTextStyle}> <Feather name="corner-down-right" />{belowText?.[i].map((x, i) => <Fragment key={i}><Text>{x}</Text> {''}</Fragment>)}</Text>}
+              {belowText?.[i] && <Text style={belowTextStyle}> <Feather name="corner-down-right" />{" "}{belowText?.[i].map((x, i) => <Fragment key={i}>{i%2===0&&' '}<Text>{x}</Text>{'  '}</Fragment>)}</Text>}
             </View>
           );
         })}
