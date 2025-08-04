@@ -1,4 +1,4 @@
-import { Feather } from "@expo/vector-icons";
+import { Feather } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import { Component, Fragment } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -65,19 +65,32 @@ export class Rows extends Component {
         {data.map((item, i) => {
           const height = heightArr && heightArr[i];
           return (
-            <View key={i} style={rowStyles?.[i]}>
-              {childAbove?.[i]}
-              <Row
-                data={item}
-                widthArr={widthArr}
-                height={height}
-                flexArr={flexArr}
-                style={style}
-                textStyle={textStyle}
-                {...props}
-              />
-              {belowText?.[i] && <Text style={belowTextStyle}> <Feather name="corner-down-right" />{" "}{belowText?.[i].map((x, i) => <Fragment key={i}>{i%2===0&&' '}<Text>{x}</Text>{'  '}</Fragment>)}</Text>}
-            </View>
+            <Fragment key={i}>
+              <View >
+                {childAbove?.[i]}
+                <Row
+                  data={item}
+                  widthArr={widthArr}
+                  height={height}
+                  flexArr={flexArr}
+                  style={{...style, ...rowStyles?.[i]}}
+                  textStyle={textStyle}
+                  {...props}
+                />
+              </View>
+              {belowText?.[i] && (
+                <Text style={belowTextStyle}>
+                  <Feather name="corner-down-right" />
+                  {belowText?.[i].map((x, i) => (
+                    <Fragment key={i}>
+                      {i % 2 === 0 && ' '}
+                      <Text>{x}</Text>
+                      {'  '}
+                    </Fragment>
+                  ))}
+                </Text>
+              )}
+            </Fragment>
           );
         })}
       </View>
